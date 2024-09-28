@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عد تنازلي لشهر رمضان</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .countdown {
+            font-size: 30px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>عد تنازلي لشهر رمضان</h1>
+    <div class="countdown" id="countdown"></div>
+
+    <script>
+        // تاريخ بدء رمضان (يمكنك تعديله حسب التاريخ المتوقع)
+        const ramadanStart = new Date("2025-03-10T00:00:00").getTime();
+
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = ramadanStart - now;
+
+            // حساب الوقت المتبقي
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // عرض النتيجة
+            document.getElementById("countdown").innerHTML = 
+                days + " يوم " + hours + " ساعة " + minutes + " دقيقة " + seconds + " ثانية ";
+
+            // إذا انتهى العد التنازلي
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "رمضان مبارك!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
